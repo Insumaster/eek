@@ -38,4 +38,13 @@ li{margin:3px 0}
 .tag{display:inline-block;background:var(--dark);color:var(--light);font-size:13px;padding:2px 8px;margin:0 6px 6px 0}
 footer{color:var(--muted);font-size:14px;border-top:4px solid var(--dark);background:var(--line);margin-top:40px}
 footer .wrap{padding-top:16px;padding-bottom:24px}
+.tips label{display:block;margin:0 0 14px;font-weight:600}
+.tips select,.tips textarea,.tips input{display:block;width:100%;margin-top:6px;font:inherit;color:var(--text);background:var(--bg);border:3px solid var(--line);padding:8px 10px}
+.tips textarea{resize:vertical}
+.tips select:focus,.tips textarea:focus,.tips input:focus{outline:2px solid var(--accent)}
+.tips button{cursor:pointer;font:inherit;font-weight:700}
+.tips button:disabled{opacity:.6}
+.tips .status{color:var(--good);min-height:1.6em;margin:4px 0}
+.opt{color:var(--muted);font-size:14px;font-weight:400}
+.hidden{display:none}
 @media (max-width:520px){nav{margin-left:0}.shots img{height:360px}}
