@@ -58,4 +58,9 @@ footer .wrap{padding-top:16px;padding-bottom:24px}
 .tips .status:empty{display:none}
 .opt{color:var(--muted);font-size:13px;font-weight:400;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .trap{position:absolute;left:-9999px}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.feat{display:flex;flex-direction:column;gap:8px;margin:0}
+.feat img{width:100%;max-width:260px;align-self:center;height:auto;border:3px solid var(--line);image-rendering:pixelated}
+.feat p{margin:0;color:var(--muted);font-size:15px}
+.new li{margin:5px 0}
 @media (max-width:520px){nav{margin-left:0}.shots img{height:360px}.two{grid-template-columns:1fr}}
