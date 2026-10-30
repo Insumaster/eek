@@ -1,28 +1,88 @@
 {
   "channel": "https://www.youtube.com/@EekOnRoad",
-  "logo": "https://yt3.ggpht.com/U5I7mTGnV3uJyBxLfc5B_20iirXohTYcAEb1qOjmRs2IpLCEIiLA5c_Y_WB46xQERN8FLLOm=s176-c-k-c0x00ffffff-no-rj",
+  "logo": "assets/eek-on-road.jpg",
   "videos": {
     "latest": [
-      {"id": "RcaOA1wSRlw", "title": "Can the Hyundai Ioniq 9 Replace Your SUV?", "published": "2026-10-08", "views": 1780},
-      {"id": "C1gruTZ7SLA", "title": "First impression of the Volvo EX60", "published": "2026-09-23", "views": 10410},
-      {"id": "f1LyWaThxNc", "title": "Is the VW ID.7 GTX the Next Gen Passat?", "published": "2026-08-20", "views": 5045}
+      {
+        "id": "RcaOA1wSRlw",
+        "title": "Can the Hyundai Ioniq 9 Replace Your SUV?",
+        "published": "2026-10-08",
+        "views": 1779
+      },
+      {
+        "id": "C1gruTZ7SLA",
+        "title": "First impression of the Volvo EX60",
+        "published": "2026-09-23",
+        "views": 10410
+      },
+      {
+        "id": "f1LyWaThxNc",
+        "title": "Is the VW ID.7 GTX the Next Gen Passat?",
+        "published": "2026-08-20",
+        "views": 5045
+      }
     ],
     "popular": [
-      {"id": "VL5M5F_GcLA", "title": "Volkswagen id3 Pro from 2021 test and drive pre-used electric car EV", "published": "2024-05-02", "views": 7009},
-      {"id": "uDCW4PcXfs4", "title": "First EV Roadtrip 1800 km (1118 miles) from Sweden to Switzerland, how easy is it ?", "published": "2025-10-15", "views": 5928},
-      {"id": "a-2XwHUxCiE", "title": "New Zeekr 7GT | Event Stockholm | A Cheap Volvo?", "published": "2026-03-06", "views": 4016}
+      {
+        "id": "VL5M5F_GcLA",
+        "title": "Volkswagen id3 Pro from 2021 test and drive pre-used electric car EV",
+        "published": "2024-05-02",
+        "views": 7009
+      },
+      {
+        "id": "uDCW4PcXfs4",
+        "title": "First EV Roadtrip 1800 km (1118 miles) from Sweden to Switzerland, how easy is it ?",
+        "published": "2025-10-15",
+        "views": 5928
+      },
+      {
+        "id": "a-2XwHUxCiE",
+        "title": "New Zeekr 7GT | Event Stockholm | A Cheap Volvo?",
+        "published": "2026-03-06",
+        "views": 4016
+      }
     ]
   },
   "shorts": {
     "latest": [
-      {"id": "cOl0b4jKmTc", "title": "The €19,990 Renault Twingo EV – 3 Things We LOVE!", "published": "2026-10-21", "views": 2425},
-      {"id": "rhqYqlC4yFg", "title": "3 Things We LOVE About the 2026 Hyundai Ioniq 9!", "published": "2026-10-06", "views": 1412},
-      {"id": "OoSKzxhicXY", "title": "How Fast Is the Hyundai Ioniq 9? 0–100 km/h Acceleration Test!", "published": "2026-10-01", "views": 707}
+      {
+        "id": "cOl0b4jKmTc",
+        "title": "The €19,990 Renault Twingo EV – 3 Things We LOVE!",
+        "published": "2026-10-21",
+        "views": 2425
+      },
+      {
+        "id": "rhqYqlC4yFg",
+        "title": "3 Things We LOVE About the 2026 Hyundai Ioniq 9!",
+        "published": "2026-10-06",
+        "views": 1412
+      },
+      {
+        "id": "OoSKzxhicXY",
+        "title": "How Fast Is the Hyundai Ioniq 9? 0–100 km/h Acceleration Test!",
+        "published": "2026-10-01",
+        "views": 707
+      }
     ],
     "popular": [
-      {"id": "CdFY8AhIMrg", "title": "How Fast is the NEW Volvo EX60? 0-100 km/h Test!", "published": "2026-09-08", "views": 17643},
-      {"id": "w8yMj2EBwDw", "title": "0 to 100 km/h (0-60 mph) with Citroën ë-C3", "published": "2025-02-13", "views": 13835},
-      {"id": "zyUb5KrRzgg", "title": "0 to 100 km/h with Renault Zoe R135 from 2021", "published": "2024-04-11", "views": 5398}
+      {
+        "id": "CdFY8AhIMrg",
+        "title": "How Fast is the NEW Volvo EX60? 0-100 km/h Test!",
+        "published": "2026-09-08",
+        "views": 17636
+      },
+      {
+        "id": "w8yMj2EBwDw",
+        "title": "0 to 100 km/h (0-60 mph) with Citroën ë-C3",
+        "published": "2025-02-13",
+        "views": 13835
+      },
+      {
+        "id": "zyUb5KrRzgg",
+        "title": "0 to 100 km/h with Renault Zoe R135 from 2021",
+        "published": "2024-04-11",
+        "views": 5398
+      }
     ]
   }
 }
