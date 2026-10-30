@@ -95,19 +95,19 @@ if (!process.argv.includes("--render")) {
 }
 
 const views = n => `${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} views`;
-const card = (v, short, popular) => `<a class="vid${short ? " short" : ""}" href="https://www.youtube.com/${short ? "shorts/" : "watch?v="}${v.id}">` +
+const card = (v, short) => `<a class="vid${short ? " short" : ""}" href="https://www.youtube.com/${short ? "shorts/" : "watch?v="}${v.id}">` +
   `<img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy"><b>${esc(v.title)}</b>` +
-  `<span>${popular ? views(v.views) : v.published}</span></a>`;
-const row = (head, list, short, popular) => `<h3 class="ythead">${head}</h3>\n` +
-  `<div class="vids${short ? " shorts" : ""}">${list.map(v => card(v, short, popular)).join("")}</div>`;
+  `<span>${views(v.views)} · ${v.published}</span></a>`;
+const row = (head, list, short) => `<h3 class="ythead">${head}</h3>\n` +
+  `<div class="vids${short ? " shorts" : ""}">${list.map(v => card(v, short)).join("")}</div>`;
 const block = `<!-- youtube:start - written by tools/update-youtube.mjs, do not edit by hand -->
 <div class="panel yt"><img class="ytlogo" src="${esc(data.logo)}" alt="Eek On Road"><div>
 <h3>Eek On Road</h3><p>EV test drives, road trips and 0-100 tests - subscribe so you don't miss the next one.</p>
 <a class="btn red" href="${CHANNEL_URL}?sub_confirmation=1">Subscribe on YouTube</a></div></div>
-${row("Latest videos", data.videos.latest, false, false)}
-${row("Most watched videos", data.videos.popular, false, true)}
-${row("Latest shorts", data.shorts.latest, true, false)}
-${row("Most watched shorts", data.shorts.popular, true, true)}
+${row("Latest videos", data.videos.latest, false)}
+${row("Most watched videos", data.videos.popular, false)}
+${row("Latest shorts", data.shorts.latest, true)}
+${row("Most watched shorts", data.shorts.popular, true)}
 <!-- youtube:end -->`;
 
 const page = await readFile("index.html", "utf8");
