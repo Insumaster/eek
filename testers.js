@@ -10,8 +10,8 @@ document.querySelectorAll("form.testers").forEach(function (form) {
     var data = new FormData(form);
     if (data.get("botcheck")) return;
     data.append("access_key", TESTERS_KEY);
-    data.append("subject", "[Tester list] New sign-up");
-    data.append("from_name", "EEK tester list");
+    data.append("subject", "[Mailing list] New sign-up");
+    data.append("from_name", "EEK mailing list");
     button.disabled = true;
     status.textContent = "Sending...";
     fetch("https://api.web3forms.com/submit", { method: "POST", body: data })

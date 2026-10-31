@@ -17,7 +17,7 @@ document.querySelectorAll("form.tips").forEach(function (form) {
     var game = form.dataset.game;
     var kind = data.get("kind");
     data.append("access_key", TIPS_KEY);
-    data.append("subject", "[" + game + "] " + kind);
+    data.append("subject", "[Game tips] " + game + ": " + kind);
     data.append("from_name", game + " tips");
     data.append("game", game);
     button.disabled = true;
