@@ -72,6 +72,14 @@ async function fromApi(kind) {
   return { latest, popular: mostViewed(all, latest) };
 }
 
+// Channel totals for partners.html. Only the API has them, so without a key last week's numbers stay.
+async function stats() {
+  if (!KEY) throw new Error("needs YOUTUBE_API_KEY");
+  const r = await (await get(`https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&id=${CHANNEL_ID}&key=${KEY}`, "stats")).json();
+  const c = r.items[0];
+  return { views: +c.statistics.viewCount, videos: +c.statistics.videoCount, since: c.snippet.publishedAt.slice(0, 4) };
+}
+
 async function logo() {
   const html = await (await get(CHANNEL_URL, "channel page")).text();
   const url = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
@@ -88,7 +96,7 @@ async function videos(kind) {
 
 if (!process.argv.includes("--render")) {
   // A part that fails keeps last week's data, so the page never goes empty.
-  for (const [key, job] of [["videos", () => videos("videos")], ["shorts", () => videos("shorts")], ["logo", logo]]) {
+  for (const [key, job] of [["videos", () => videos("videos")], ["shorts", () => videos("shorts")], ["stats", stats], ["logo", logo]]) {
     try { data[key] = await job(); } catch (e) { console.warn(`kept old ${key}: ${e.message}`); }
   }
   await writeFile("youtube.json", JSON.stringify(data, null, 2) + "\n");
@@ -113,5 +121,17 @@ ${row("Most watched shorts", data.shorts.popular, true)}
 const page = await readFile("index.html", "utf8");
 if (!/<!-- youtube:start[\s\S]*?<!-- youtube:end -->/.test(page)) throw new Error("youtube markers missing in index.html");
 await writeFile("index.html", page.replace(/<!-- youtube:start[\s\S]*?<!-- youtube:end -->/, () => block));
+const topShort = [...data.shorts.latest, ...data.shorts.popular].sort((a, b) => b.views - a.views)[0];
+const topVideo = [...data.videos.latest, ...data.videos.popular].sort((a, b) => b.views - a.views)[0];
+const stat = (n, label) => `<div class="panel stat"><b>${n}</b><span>${label}</span></div>`;
+const statsBlock = `<!-- stats:start - written by tools/update-youtube.mjs, do not edit by hand -->
+<div class="stats">${stat(views(data.stats.views).replace(" views", ""), "views on YouTube")}${stat(data.stats.videos, "videos and shorts")}` +
+  `${stat(views(topVideo.views).replace(" views", ""), "views on our most watched video")}${stat(views(topShort.views).replace(" views", ""), "views on our most watched short")}</div>
+<p class="lead">Filmed in Sweden since ${data.stats.since}, in English for viewers all over the world. Our viewers come for electric cars,
+road trips and tech - and for honest impressions.</p>
+<!-- stats:end -->`;
+const partners = await readFile("partners.html", "utf8");
+if (!/<!-- stats:start[\s\S]*?<!-- stats:end -->/.test(partners)) throw new Error("stats markers missing in partners.html");
+await writeFile("partners.html", partners.replace(/<!-- stats:start[\s\S]*?<!-- stats:end -->/, () => statsBlock));
 const ids = l => l.map(v => v.id).join(",");
 console.log(`videos new ${ids(data.videos.latest)} top ${ids(data.videos.popular)} | shorts new ${ids(data.shorts.latest)} top ${ids(data.shorts.popular)} | logo ${data.logo}`);

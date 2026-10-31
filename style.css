@@ -92,3 +92,12 @@ footer .wrap{padding-top:16px;padding-bottom:24px}
 .btn.red{background:#e8443a;color:#fff}
 .testers>p:first-child{margin-top:0}
 .testers p.opt{margin:12px 0 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{display:flex;flex-direction:column;gap:4px;margin:0;text-align:center}
+.stat b{font:700 28px/1.1 ui-monospace,"Cascadia Mono",Consolas,monospace;color:#f28a4e}
+.stat span{color:var(--muted);font-size:14px}
+.partners{border-style:dashed}
+@media (max-width:640px){.stats{grid-template-columns:1fr 1fr}.stat b{font-size:22px}}
+.features.pairs{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+@media (min-width:700px){.features.pairs{grid-template-columns:1fr 1fr}}
+.stats+.lead{margin-top:14px}

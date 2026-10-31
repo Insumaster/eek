@@ -20,5 +20,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html youtube.json assets/eek-on-road.jpg
+          git add -A index.html partners.html youtube.json assets/eek-on-road.jpg
           git diff --cached --quiet || (git commit -m "Weekly YouTube update" && git push)
