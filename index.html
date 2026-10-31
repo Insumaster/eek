@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EEK - games, apps and YouTube</title><link rel="stylesheet" href="style.css?v=eek2"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="assets/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<title>EEK - games, apps and YouTube</title><link rel="stylesheet" href="style.css?v=eek3"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="assets/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head><body>
-<header class="top"><div class="wrap"><a class="logo" href="index.html"><span class="tiles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>EEK <small>games · apps · youtube</small></a><nav><a href="index.html" class="on">Home</a><a href="#games">Games</a><a href="#apps">Apps</a><a href="#youtube">YouTube</a><a href="#about">About</a><a href="#contact">Contact</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="logo" href="index.html"><span class="tiles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>EEK <small>games · apps · youtube</small></a><nav><a href="index.html" class="on">Home</a><a href="#games">Games</a><a href="#apps">Apps</a><a href="#youtube">YouTube</a><a href="#testers">Test first</a><a href="#about">About</a><a href="#contact">Contact</a></nav></div></header>
 <main class="wrap">
 
 <section class="intro">
@@ -52,8 +52,29 @@ Start in a garage in 1980 and build the biggest game studio in the world.<br><sp
 <div class="vids shorts"><a class="vid short" href="https://www.youtube.com/shorts/CdFY8AhIMrg"><img src="https://i.ytimg.com/vi/CdFY8AhIMrg/hqdefault.jpg" alt="" loading="lazy"><b>How Fast is the NEW Volvo EX60? 0-100 km/h Test!</b><span>17 636 views · 2026-09-08</span></a><a class="vid short" href="https://www.youtube.com/shorts/w8yMj2EBwDw"><img src="https://i.ytimg.com/vi/w8yMj2EBwDw/hqdefault.jpg" alt="" loading="lazy"><b>0 to 100 km/h (0-60 mph) with Citroën ë-C3</b><span>13 835 views · 2025-02-13</span></a><a class="vid short" href="https://www.youtube.com/shorts/zyUb5KrRzgg"><img src="https://i.ytimg.com/vi/zyUb5KrRzgg/hqdefault.jpg" alt="" loading="lazy"><b>0 to 100 km/h with Renault Zoe R135 from 2021</b><span>5 398 views · 2024-04-11</span></a></div>
 <!-- youtube:end -->
 
+<h2 id="testers">Test first</h2>
+<form class="panel tips testers">
+<p>Want to play our new games and try our apps before everyone else? Join the tester list and we'll e-mail you when a new beta
+is ready to test. Only about new tests - no spam.</p>
+<div class="field"><b>I want to test</b><div class="kinds">
+<label><input type="checkbox" name="wants" value="Games" checked><span>Games</span></label>
+<label><input type="checkbox" name="wants" value="Apps" checked><span>Apps</span></label></div></div>
+<div class="two">
+<label class="field"><b>Your e-mail</b>
+<input name="email" type="email" required maxlength="100" placeholder="you@example.com"></label>
+<label class="field"><b>Your name <span class="opt">optional</span></b>
+<input name="name" type="text" maxlength="60" placeholder="What should we call you?"></label></div>
+<label class="field"><b>Your phone model <span class="opt">optional, helps us pick testers</span></b>
+<input name="phone_model" type="text" maxlength="60" placeholder="e.g. Samsung Galaxy S23"></label>
+<input type="checkbox" name="botcheck" class="trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="btn" type="submit">Join the tester list</button>
+<p class="status" role="status"></p>
+<p class="opt">We only use your e-mail address to tell you about new tests, and never share it. Want off the list? Just e-mail
+<a href="mailto:johaneek@outlook.com">johaneek@outlook.com</a> and we'll remove you.</p>
+</form>
+
 <h2 id="about">About us</h2>
-<div class="panel"><p>EEK is a small independent creator from Sweden. It started with a love for cars, technology and games -
+<div class="panel"><p>EEK is the two of us - a small independent team from Sweden. It started with a love for cars, technology and games -
 and a habit of making the things we want to see ourselves. Today EEK is three things:</p>
 <ul><li><b>Pixel Games</b> - management and tycoon games in pixel style for your phone. Simple to start, deep enough to keep you
 going for a long time, and always fair.</li>
@@ -75,4 +96,5 @@ voluntary and gives nothing extra in the games: everyone still plays on the same
 </main>
 <footer><div class="wrap">EEK - Pixel Games, Pixel Apps and Eek On Road on YouTube. Made in Sweden. Contact: <a href="mailto:johaneek@outlook.com">johaneek@outlook.com</a><br>
 All clubs and players in Pixel Football Manager and all studios, consoles and companies in Pixel Game Empire are fictional.</div></footer>
+<script src="testers.js"></script>
 </body></html>
