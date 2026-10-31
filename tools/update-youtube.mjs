@@ -102,7 +102,7 @@ const row = (head, list, short) => `<h3 class="ythead">${head}</h3>\n` +
   `<div class="vids${short ? " shorts" : ""}">${list.map(v => card(v, short)).join("")}</div>`;
 const block = `<!-- youtube:start - written by tools/update-youtube.mjs, do not edit by hand -->
 <div class="panel yt"><img class="ytlogo" src="${esc(data.logo)}" alt="Eek On Road"><div>
-<h3>Eek On Road</h3><p>EV test drives, road trips and 0-100 tests - subscribe so you don't miss the next one.</p>
+<h3>Eek On Road: Tech in Motion</h3><p>From road trips to events and everything in between, we're all about discovering what's out there and sharing it with you. Expect nice clean visuals, honest impressions and a passion for cars and cool tech. Subscribe and follow the journey!</p>
 <a class="btn red" href="${CHANNEL_URL}?sub_confirmation=1">Subscribe on YouTube</a></div></div>
 ${row("Latest videos", data.videos.latest, false)}
 ${row("Most watched videos", data.videos.popular, false)}
