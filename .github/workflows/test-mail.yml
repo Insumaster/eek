@@ -17,6 +17,7 @@ jobs:
           (async () => {
             const b = await chromium.launch();
             const p = await b.newPage();
+            p.on("response", async r => { if (r.url().includes("web3forms")) console.log("web3forms", r.status(), (await r.text()).slice(0, 300)); });
             const status = async () => { await p.waitForFunction(s => !/Sending/.test(document.querySelector(s).textContent) && document.querySelector(s).textContent, "form .status", { timeout: 20000 }); return p.textContent("form .status"); };
             await p.goto("https://insumaster.github.io/eek/?test=" + Date.now());
             await p.fill("form.testers input[name=email]", "johaneek@outlook.com");
