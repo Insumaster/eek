@@ -17,12 +17,15 @@ jobs:
           (async () => {
             const b = await chromium.launch();
             const p = await b.newPage();
+            p.on("requestfailed", r => console.log("failed", r.url(), r.failure() && r.failure().errorText));
+            p.on("console", m => console.log("console", m.type(), m.text()));
+            p.on("request", r => { if (r.url().includes("web3forms")) console.log("request", r.method(), r.url()); });
             p.on("response", async r => { if (r.url().includes("web3forms")) console.log("web3forms", r.status(), (await r.text()).slice(0, 300)); });
             const status = async () => { await p.waitForFunction(s => !/Sending/.test(document.querySelector(s).textContent) && document.querySelector(s).textContent, "form .status", { timeout: 20000 }); return p.textContent("form .status"); };
             await p.goto("https://insumaster.github.io/eek/?test=" + Date.now());
             await p.fill("form.testers input[name=email]", "johaneek@outlook.com");
             await p.fill("form.testers input[name=name]", "TEST - ignore");
-            await p.click("form.testers button");
+            await p.click("form.testers button"); await p.waitForTimeout(3000);
             console.log("Mailing list:", await status());
             await p.goto("https://insumaster.github.io/eek/football-manager/tips.html?test=" + Date.now());
             await p.fill("form.tips textarea[name=message]", "TEST tip from the website, to try the mail rule. Ignore.");
