@@ -9,15 +9,8 @@ document.querySelectorAll("form.testers").forEach(function (form) {
     e.preventDefault();
     var data = new FormData(form);
     if (data.get("botcheck")) return;
-    var wants = data.getAll("wants");
-    if (!wants.length) {
-      status.textContent = "Pick games, apps or both.";
-      return;
-    }
-    data.delete("wants");
-    data.append("wants", wants.join(" + "));
     data.append("access_key", TESTERS_KEY);
-    data.append("subject", "[Tester list] New sign-up: " + wants.join(" + "));
+    data.append("subject", "[Tester list] New sign-up");
     data.append("from_name", "EEK tester list");
     button.disabled = true;
     status.textContent = "Sending...";
