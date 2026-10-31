@@ -125,7 +125,7 @@ const topShort = [...data.shorts.latest, ...data.shorts.popular].sort((a, b) => 
 const topVideo = [...data.videos.latest, ...data.videos.popular].sort((a, b) => b.views - a.views)[0];
 const stat = (n, label) => `<div class="panel stat"><b>${n}</b><span>${label}</span></div>`;
 const statsBlock = `<!-- stats:start - written by tools/update-youtube.mjs, do not edit by hand -->
-<div class="stats">${stat(views(data.stats.views).replace(" views", ""), "views on YouTube")}${stat(data.stats.videos, "videos and shorts")}` +
+<div class="stats">${stat(data.stats.videos, "videos and shorts")}` +
   `${stat(views(topVideo.views).replace(" views", ""), "views on our most watched video")}${stat(views(topShort.views).replace(" views", ""), "views on our most watched short")}</div>
 <p class="lead">Filmed in Sweden since ${data.stats.since}, in English for viewers all over the world. Our viewers come for electric cars,
 road trips and tech - and for honest impressions.</p>
