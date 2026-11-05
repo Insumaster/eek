@@ -8,7 +8,7 @@ a{color:var(--accent)}
 header.top{background:var(--line);border-bottom:4px solid var(--dark)}
 header.top .wrap{display:flex;align-items:center;gap:14px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
 .logo{font:700 20px/1 ui-monospace,"Cascadia Mono",Consolas,monospace;letter-spacing:2px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:10px}
-.logo .mark{display:block;flex:none}
+.logo .mark{display:block;flex:none;height:26px;width:auto}
 nav{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
 nav a{color:var(--text);text-decoration:none;padding:6px 10px;background:var(--panel);border:2px solid var(--line);box-shadow:0 3px 0 var(--line);font-size:14px}
 nav a.on,nav a:hover{background:var(--dark)}
