@@ -1,4 +1,4 @@
-// Fetches the 3 newest and 3 most viewed Eek On Road videos and shorts and writes them into index.html.
+// Fetches the 3 most viewed Eek On Road videos and shorts and writes them into index.html.
 // Run by .github/workflows/youtube.yml once a week. Needs Node 20+, no packages.
 //   node tools/update-youtube.mjs            fetch from YouTube, update youtube.json and index.html
 //   node tools/update-youtube.mjs --render   only re-render index.html from youtube.json
@@ -23,10 +23,8 @@ const decode = s => s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 // "0 to 100 km/h with Volvo EX 30 #0to100 #ev" -> "0 to 100 km/h with Volvo EX 30"
 const clean = t => t.replace(/(\s+#[^\s#]+)+\s*$/u, "").replace(/​/g, "").replace(/\s{2,}/g, " ").trim();
-const newest = list => [...list].sort((a, b) => b.published.localeCompare(a.published)).slice(0, COUNT);
-// Most viewed, leaving out the ones already shown as newest.
-const mostViewed = (list, latest) => {
-  const seen = new Set(latest.map(v => v.id)), out = [];
+const mostViewed = list => {
+  const seen = new Set(), out = [];
   for (const v of [...list].sort((a, b) => b.views - a.views)) if (!seen.has(v.id)) { seen.add(v.id); out.push(v); }
   return out.slice(0, COUNT);
 };
@@ -46,11 +44,10 @@ async function fromFeed(kind) {
     views: +(e.match(/<media:statistics views="(\d+)"/)?.[1] ?? 0),
   }));
   if (!items.length) throw new Error(`${kind} feed: no videos`);
-  const latest = newest(items);
   // The feed only has recent uploads, so keep last week's most viewed in the running with their old counts.
   const fresh = new Map(items.map(v => [v.id, v]));
   const pool = [...items, ...data[kind].popular.filter(v => !fresh.has(v.id))];
-  return { latest, popular: mostViewed(pool, latest) };
+  return { popular: mostViewed(pool) };
 }
 
 async function fromApi(kind) {
@@ -68,8 +65,7 @@ async function fromApi(kind) {
     all.push(...r.items.map(v => ({ id: v.id, title: clean(v.snippet.title), published: v.snippet.publishedAt.slice(0, 10), views: +v.statistics.viewCount || 0 })));
   }
   if (!all.length) throw new Error(`${kind} api: no videos`);
-  const latest = newest(all);
-  return { latest, popular: mostViewed(all, latest) };
+  return { popular: mostViewed(all) };
 }
 
 // Channel totals for partners.html. Only the API has them, so without a key last week's numbers stay.
@@ -112,17 +108,15 @@ const block = `<!-- youtube:start - written by tools/update-youtube.mjs, do not 
 <div class="panel yt"><img class="ytlogo" src="${esc(data.logo)}" alt="Eek On Road"><div>
 <h3>Eek On Road: Tech in Motion</h3><p>From road trips to events and everything in between, we're all about discovering what's out there and sharing it with you. Expect nice clean visuals, honest impressions and a passion for cars and cool tech. Subscribe and follow the journey!</p>
 <a class="btn red" href="${CHANNEL_URL}?sub_confirmation=1">Subscribe on YouTube</a></div></div>
-${row("Latest videos", data.videos.latest, false)}
 ${row("Most watched videos", data.videos.popular, false)}
-${row("Latest shorts", data.shorts.latest, true)}
 ${row("Most watched shorts", data.shorts.popular, true)}
 <!-- youtube:end -->`;
 
 const page = await readFile("index.html", "utf8");
 if (!/<!-- youtube:start[\s\S]*?<!-- youtube:end -->/.test(page)) throw new Error("youtube markers missing in index.html");
 await writeFile("index.html", page.replace(/<!-- youtube:start[\s\S]*?<!-- youtube:end -->/, () => block));
-const topShort = [...data.shorts.latest, ...data.shorts.popular].sort((a, b) => b.views - a.views)[0];
-const topVideo = [...data.videos.latest, ...data.videos.popular].sort((a, b) => b.views - a.views)[0];
+const topShort = [...data.shorts.popular].sort((a, b) => b.views - a.views)[0];
+const topVideo = [...data.videos.popular].sort((a, b) => b.views - a.views)[0];
 const stat = (n, label) => `<div class="panel stat"><b>${n}</b><span>${label}</span></div>`;
 const statsBlock = `<!-- stats:start - written by tools/update-youtube.mjs, do not edit by hand -->
 <div class="stats">${stat(data.stats.videos, "videos and shorts")}` +
@@ -134,4 +128,4 @@ const partners = await readFile("partners.html", "utf8");
 if (!/<!-- stats:start[\s\S]*?<!-- stats:end -->/.test(partners)) throw new Error("stats markers missing in partners.html");
 await writeFile("partners.html", partners.replace(/<!-- stats:start[\s\S]*?<!-- stats:end -->/, () => statsBlock));
 const ids = l => l.map(v => v.id).join(",");
-console.log(`videos new ${ids(data.videos.latest)} top ${ids(data.videos.popular)} | shorts new ${ids(data.shorts.latest)} top ${ids(data.shorts.popular)} | logo ${data.logo}`);
+console.log(`videos ${ids(data.videos.popular)} | shorts ${ids(data.shorts.popular)} | logo ${data.logo}`);
